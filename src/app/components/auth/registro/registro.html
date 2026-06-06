@@ -1,43 +1,42 @@
 <div class="auth-body">
-  <button class="icon-button theme-toggle auth-theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme" title="Switch color theme">
-    <i class="bi bi-moon-stars" data-theme-icon aria-hidden="true"></i>
-  </button>
   <main class="auth-page">
-    <section class="auth-card">
-
-      
-      <a class="auth-brand" href="index.html"><span class="brand-icon"><i class="bi bi-grid-1x2-fill" aria-hidden="true"></i></span><span><strong>SAES</strong><small>Crear una cuenta en SAES</small></span></a>
+    <section class="auth-card">      
       <div class="auth-visual"><img src="../assets/images/png/dasher-ui-bootstrap-5.jpg" alt="adminHMD dashboard interface"></div>
-      
+      <form (submit)="registro()"></form>
         <div class="mb-4">
           <p class="eyebrow mb-1">Acceso Seguro</p>
           <h1 class="h3 mb-1">Registrarse</h1>
           <p class="text-muted mb-0">Crear tu cuenta en SAES</p>
+          
+
         </div>
         <div class="mb-3"><label class="form-label" for="nombre">Nombre completo</label><input class="form-control" id="nombre" type="text" [formField]="registerForm.nombre">
           @if (registerForm.nombre().touched()&&registerForm.nombre().invalid()) {
             @for(error of registerForm.nombre().errors(); track $index) {
+              <div class = "alert alert-danger mb-0" role="alert">  </div>
               {{error.message}}<br>
             } 
-            <div class="invalid-feedback">El nombre es requerido y debe tener al menos 2 caracteres</div>
           }
         </div>
         <div class="mb-3"><label class="form-label" for="username">Correo electronico</label><input class="form-control" id="username" type="email" [formField]="registerForm.username">
           @if (registerForm.username().touched()&&registerForm.username().invalid()) {
             @for(error of registerForm.username().errors(); track $index) {
-              {{error.message}}<br>
-            }
-            <div class="invalid-feedback">Correo electrónico no válido</div>
-          }
+              <div class = "alert alert-danger mb-0" role="alert">  
+              {{error.message}}
+              </div>           
+          }}
         </div>
+        
         <div class="mb-3"><label class="form-label" for="password">Clave</label><input class="form-control" id="password" type="password" [formField]="registerForm.password">
           @if (registerForm.password().touched()&&registerForm.password().invalid()) {
             @for(error of registerForm.password().errors(); track $index) {
-              {{error.message}}<br>
-            }
-          }
+              <div class = "alert alert-danger mb-0" role="alert">  
+              {{error.message}}
+          </div>            
+          }}
         </div>
-        <button class="btn btn-primary w-100" type="submit" [disabled]="registerForm().invalid()" ><i class="bi bi-person-plus" aria-hidden="true"></i> Crear cuenta</button>
+        
+       <button class="btn btn-primary w-100" type="submit" [disabled]="registerForm().invalid()" ><i class="bi bi-person-plus" aria-hidden="true"></i> Crear cuenta</button> 
      
       
       <div class="auth-footer">¿Ya tienes una cuenta? <a routerLink="/login">Ingresar</a></div>

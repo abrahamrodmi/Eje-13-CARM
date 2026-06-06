@@ -8,11 +8,13 @@ import { Dash } from './components/pages/dash/dash';
 import { Kardex } from './components/pages/kardex/kardex';
 import { Materias } from './components/pages/materias/materias';
 import { Profesores } from './components/pages/profesores/profesores';
+import { AuthGuard } from './guards/auth-guard-guard';
 
 export const routes: Routes = [
     {
         path: 'layout',
         component: Layout,
+        canActivate: [AuthGuard],   
         children: [
             {
                 path: ' ',

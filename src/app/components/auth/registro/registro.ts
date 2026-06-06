@@ -6,7 +6,7 @@ import{form, FORM_FIELD, FormField} from '@angular/forms/signals'
 import { signal } from '@angular/core';
 import { Registerinterface } from '../../../models/registerinterface';
 import { required, minLength, maxLength, pattern } from '@angular/forms/signals';
-
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,9 +18,9 @@ import { required, minLength, maxLength, pattern } from '@angular/forms/signals'
 
 export class Registro{
   registerModel = signal<Registerinterface>({
-    nombre: 'Nabor',
-    username: 'Nabor@ejemplo.com',
-    password: '123456'
+    nombre: '',
+    username: '',
+    password: '',
   })
   //VALIDACIONES
   //Validaciones del nombre
@@ -52,15 +52,20 @@ export class Registro{
     
   })
   
-  constructor(private registerService: RegisterService) { }
+  constructor(private registerService: RegisterService, private router: Router) { }
 
   registro() {
     this.registerService.registrarse(this.registerModel()).subscribe({
       next: (respuesta) => {
+         alert("Usuario registrado" + respuesta);
+        this.router.navigate(['/login']);
         console.log(respuesta);
+       
       },
       error: (error) => {
+        alert("Ocurrió un error" + error.error.message);
         console.error(error);
+        
       }
      
     });

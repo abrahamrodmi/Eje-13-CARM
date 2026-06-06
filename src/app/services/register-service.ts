@@ -7,7 +7,8 @@ import { Observable, timeout } from 'rxjs';
   providedIn: 'root',
 })
 export class RegisterService {
-  urlBase='https://examen-ii-aipg.onrender.com/'
+  urlBase='https://examen-ii-aipg-1.onrender.com/'
+
 
   constructor(private httpClient:HttpClient){
 
